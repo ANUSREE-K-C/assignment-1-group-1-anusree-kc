@@ -1,0 +1,19 @@
+name: Auto Grading
+
+on: [push]
+
+jobs:
+  grade:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Run Teacher Tests
+        run: mvn -Dtest=TeacherGradingTest test
